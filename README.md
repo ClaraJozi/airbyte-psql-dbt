@@ -102,9 +102,6 @@ Im Airbyte UI wird dann Folgendes eingetragen und als Quelle hinzugefügt:
 
 ![Screenshot from 2023-08-11 17-56-50](https://github.com/ClaraJozi/data_pipeline_playground/assets/39526169/4238b402-99ee-44c2-9c04-09e3874680ab)
 
-
-Der Name des Datasets ist dabei der Name, den wir später für unsere Tabelle benutzen: `credit_card_transactions_raw`
-
 Angaben für vollständige Kreditkartentransaktionen-Datei: 
 ```yml
 Dataset Name: credit_card_txns_raw
