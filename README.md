@@ -33,12 +33,12 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 - [Credentials Management](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) durch gpg key
 <br />
 
-Bei Schwierigkeiten mit dem credential management wurde folgender error angezeigt: 
+Bei Schwierigkeiten mit dem credential management wurde folgender Fehler angezeigt: 
 ```
 error getting credentials - err: exit status 1, out: `error getting credentials - err: exit status 1, out: `exit status 2: gpg: decryption failed: no secret key
 ```
 
-Der Error konnte mithilfe folgender Schritte behoben werden: 
+Der Fehler konnte mithilfe folgender Schritte behoben werden: 
 - Löschung der gespeicherten Docker Credentials
 - neue Generierung eines GPG keys
 - Speicherung des neuen GPG keys initiiert
@@ -109,14 +109,15 @@ Nachdem die PostgreSQL-Datenbank wie unter PostgreSQL Setup beschrieben in der `
 Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum Beispiel die Verbindung synchronisiert werden soll und ob die Daten in einem JSON blob übertragen werden sollen oder bereits mithilfe von integriertem dbt normalisiert werden sollen. 
 ![Screenshot from 2023-08-17 10-10-27](https://github.com/ClaraJozi/data_pipeline/assets/39526169/761728fd-bf51-4f6d-bf86-71462ed4cdfa)
 
-![Screenshot from 2023-08-17 10-10-39](https://github.com/ClaraJozi/data_pipeline/assets/39526169/495438e5-08fa-4b42-9057-59f376816b87)
+![Screenshot from 2023-08-19 17-29-07](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/06592070-ae16-43dd-948b-d51fb32d02c2)
 
 <br />
 
 Zusätzlich zu der Normalisierung der Daten, können in diesem Schritt unter [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eigenes github Repository`s direkt in die Verbindung mitaufgenommen werden. 
 
-![Screenshot from 2023-08-19 13-43-14](https://github.com/ClaraJozi/data_pipeline/assets/39526169/02f2c2a2-2340-42ea-b2cf-65a5f6f4902f)
+![Screenshot from 2023-08-19 17-28-55](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/a3d35857-8866-4efa-8edd-4ca438deab2e)
 
+Da die integrierte Normalisierung in Airbyte den Daten nicht die gewünschten Datentypen zuweist, ist dem dbt-Setup ein individuell angepasstes SQL-Modell zur Normalisierung beigefügt. 
 
 <br />
 
@@ -299,7 +300,7 @@ group by 1,2,3,4
 order by 1 desc
 ```
 
-Nachdem im Repository selbst das dbt-Projekt so aufgesetzt wurde, kann in Airbyte jetzt unter `custom transformations` das jeweilige dbt-Projekt hinzugefügt werden.  
+Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `custom transformations` hinzugefügt werden. Die Daten werden dann automatisch bei jeder Synchronisation von der CSV zu PostgreSQL über Airbyte im letzten Schritt transformiert.   
 
 
  
