@@ -4,6 +4,14 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 
 ![architecture-flowchart drawio (4)](https://github.com/ClaraJozi/data_pipeline/assets/39526169/6e4dedcd-07b5-4f27-903a-ae4bc850743e)
 
+### Gewünschter Output
+- eine training_txn Datenbank mit einem public Schema, das vier Tabellen beinhaltet: 
+	- _airbyte_raw_credit_card_txns_raw: Rohdaten aus der CSV
+	- normalization: normalisierte Daten
+   	- stats_total: KPIs nach Datum
+   	- stats_geo: KPIs nach Datum und Merchant State
+ 
+  
 ### Systemvoraussetzungen
 
 - Python 3.9.17
@@ -21,7 +29,7 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 - [Kreditkartentransaktionen zur Betrugserkennung](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions)
 ---
 
-### Finales Repository SetUp
+### Repository SetUp
 - geklontes Airbyte Repository
 - dbt Ordner
 - docker-compose.yml Datei
@@ -98,7 +106,7 @@ Der Name des Datasets ist dabei der Name, den wir später für unsere Tabelle be
 
 #### 3. [Ziel hinzufügen](https://docs.airbyte.com/quickstart/add-a-destination)
 
-Nachdem die PostgreSQL-Datenbank wie unter PostgreSQL Setup beschrieben in der `docker-compose.yml` und durch `docker compose up` aufgesetzt wurde, können wir diese als Ziel in Airbyte hinzufügen. In diesem Schritt kann auch definiert werden, ob und welche Verschlüsselungsprotokolle (SSL oder SSH) zur Sicherung der Daten verwendet werden. 
+Nachdem die PostgreSQL-Datenbank wie unter PostgreSQL Setup beschrieben in der `docker-compose.yml` und durch `docker compose up` aufgesetzt wurde, können wir diese als Ziel in Airbyte hinzufügen. In diesem Schritt kann auch definiert werden, ob und welche Verschlüsselungsprotokolle (SSL oder SSH) zur Sicherung der Daten verwendet werden. Das Passwort ist hier das in der `docker-compose.yml` festgelegte Passwort für PostgreSQL: `mysecretpassword`. 
 
 ![Screenshot from 2023-08-17 09-42-52](https://github.com/ClaraJozi/data_pipeline/assets/39526169/c7d7bb33-1042-4d5f-ad68-9c7c37873645)
 
@@ -109,7 +117,7 @@ Nachdem die PostgreSQL-Datenbank wie unter PostgreSQL Setup beschrieben in der `
 Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum Beispiel die Verbindung synchronisiert werden soll und ob die Daten in einem JSON blob übertragen werden sollen oder bereits mithilfe von integriertem dbt normalisiert werden sollen. 
 ![Screenshot from 2023-08-17 10-10-27](https://github.com/ClaraJozi/data_pipeline/assets/39526169/761728fd-bf51-4f6d-bf86-71462ed4cdfa)
 
-![Screenshot from 2023-08-19 17-29-07](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/06592070-ae16-43dd-948b-d51fb32d02c2)
+![Screenshot from 2023-08-19 18-01-10](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/2938e0bf-bd06-4ef7-827f-367ddedecb1f)
 
 <br />
 
