@@ -1,0 +1,14 @@
+pipeline:
+  outputs:
+
+    dev:
+      type: postgres
+      threads: 1
+      host: localhost
+      port: 5432
+      user: clara
+      pass: mysecretpassword
+      dbname: training_txn
+      schema: public
+
+  target: dev

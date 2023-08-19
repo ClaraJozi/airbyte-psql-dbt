@@ -1,0 +1,157 @@
+version: 2
+
+sources:
+  - name: training_txn
+    description: PostgreSQL database used for training data from credit card transactions CSV for ML model 
+    tables:
+      - name: _airbyte_raw_credit_card_txns_raw
+        identifier: training_txn.public._airbyte_raw_credit_card_txns_raw
+        columns:
+          - name: _airbyte_ab_id
+            description: uuid value assigned by connectors to each row of the data written in the destination
+            tests:
+              - unique
+              - not_null
+          - name: _airbyte_data
+            description: all the data from the CSV stored as JSON blob
+            tests: 
+              - not_null
+          - name: _airbyte_emitted_at
+            description: time at which the record was emitted and recorded by destination connector of Airbyte
+              - not_null
+
+models:
+  - name: normalization
+    description: normalization of data from Airbyte
+    sql: models/normalization.sql
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null
+      - name: cc_owner
+        tests: 
+          - not_null
+      - name: ccard
+        tests: 
+          - not_null
+      - name: year
+      - name: month
+      - name: day
+      - name: full_date
+        tests: 
+          - not_null
+      - name: time
+      - name: dollar_amount
+        tests: 
+          - not_null
+      - name: txn_type
+      - name: merchant_name
+      - name: merchant_city
+      - name: merchant_state
+      - name: merchant_zip
+      - name: mcc
+      - name: errors
+      - name: is_fraud
+        tests:
+          - not_null
+
+  - name: stats_total
+    description: aggregations by date
+    sql: models/stats_total.sql
+    columns: 
+      - name: full_date
+        description: date of the transaction
+      - name: year
+        description: year of the transaction
+      - name: month
+        description: month of the transaction
+      - name: day
+        description: day of the transaction
+      - name: cc_owner_cnt
+        description: count of unique credit card owners
+      - name: txn_cnt
+        description: count of transactions
+      - name: amount_sum
+        description: sum of dollar amounts
+      - name: fraud_cnt
+        description: count of fraudulent transactions
+      - name: fraud_rate_cnt
+        description: fraud rate based on count
+      - name: fraud_vol
+        description: sum of fraudulent dollar amounts
+      - name: fraud_rate_vol
+        description: fraud rate based on volume
+      - name: avg_amount_non_fraud
+        description: average amount for non-fraudulent transactions
+      - name: avg_amount_fraud
+        description: average amount for fraudulent transactions
+
+  - name: stats_geo
+    description: aggregations by geographical data points - merchant state and merchant city - and by date, online txns are excluded
+    sql: models/stats_geo.sql
+    columns:
+      - name: full_date
+        description: date of the transaction
+      - name: year
+        description: year of the transaction
+      - name: month
+        description: month of the transaction
+      - name: day
+        description: day of the transaction
+      - name: merchant_state
+        description: state of the merchant
+      - name: merchant_city
+        description: city of the merchant
+      - name: cc_owner_cnt
+        description: count of unique credit card owners
+      - name: txn_cnt
+        description: count of transactions
+      - name: amount_sum
+        description: sum of dollar amounts
+      - name: fraud_cnt
+        description: count of fraudulent transactions
+      - name: fraud_amount
+        description: sum of fraudulent dollar amounts
+      - name: avg_amount_non_fraud
+        description: average amount for non-fraudulent transactions
+      - name: avg_amount_fraud
+        description: average amount for fraudulent transactions
+
+  - name: stats_txn_type
+    description: aggregations by transaction type (e.g. "Online Transaction")
+    sql: model/stats_txn_type.sql
+    columns:
+      - name: full_date
+        description: date of the transaction
+      - name: year
+        description: year of the transaction
+      - name: month
+        description: month of the transaction
+      - name: day
+        description: day of the transaction
+      - name: txn_type
+        description: type of the transaction
+      - name: cc_owner_cnt
+        description: count of unique credit card owners
+      - name: txn_cnt
+        description: count of transactions
+      - name: total_amount
+        description: total dollar amount
+      - name: fraud_cnt
+        description: count of fraudulent transactions
+      - name: fraud_rate_cnt
+        description: fraud rate based on count
+      - name: fraud_vol
+        description: sum of fraudulent dollar amounts
+      - name: fraud_rate_vol
+        description: fraud rate based on volume
+      - name: avg_amount_non_fraud
+        description: average amount for non-fraudulent transactions
+      - name: avg_amount_fraud
+        description: average amount for fraudulent transactions
+
+
+
+
+

@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=clara
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_DB=training_txn
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U clara"]
+      interval: 60s
+      timeout: 30s
+      retries: 5
+
+volumes:
+  db:
+    driver: local
