@@ -5,12 +5,12 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 ![architecture-flowchart drawio (4)](https://github.com/ClaraJozi/data_pipeline/assets/39526169/6e4dedcd-07b5-4f27-903a-ae4bc850743e)
 
 ### Gewünschter Output
-- eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen beinhaltet: 
-	- `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
-	- `normalization`: normalisierte Daten
-   	- `stats_total`: KPIs nach Datum
-   	- `stats_geo`: KPIs nach Datum und Merchant State & City
-   	- `stats_txn_type`: KPIs nach Datum und Transaktionstyp
+Eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen beinhaltet: 
+- `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
+- `normalization`: normalisierte Daten
+- `stats_total`: KPIs nach Datum
+- `stats_geo`: KPIs nach Datum und Merchant State & City
+- `stats_txn_type`: KPIs nach Datum und Transaktionstyp
 
 ![Screenshot from 2023-08-19 20-15-20](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/6ea1cc3c-450a-48bc-ae36-d4b401ff5a29)
 
