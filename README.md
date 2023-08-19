@@ -5,12 +5,15 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 ![architecture-flowchart drawio (4)](https://github.com/ClaraJozi/data_pipeline/assets/39526169/6e4dedcd-07b5-4f27-903a-ae4bc850743e)
 
 ### Gewünschter Output
-- eine training_txn Datenbank mit einem public Schema, das vier Tabellen beinhaltet: 
-	- _airbyte_raw_credit_card_txns_raw: Rohdaten aus der CSV
-	- normalization: normalisierte Daten
-   	- stats_total: KPIs nach Datum
-   	- stats_geo: KPIs nach Datum und Merchant State
- 
+- eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen beinhaltet: 
+	- `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
+	- `normalization`: normalisierte Daten
+   	- `stats_total`: KPIs nach Datum
+   	- `stats_geo`: KPIs nach Datum und Merchant State & City
+   	- `stats_txn_type`: KPIs nach Datum und Transaktionstyp
+
+![Screenshot from 2023-08-19 20-15-20](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/6ea1cc3c-450a-48bc-ae36-d4b401ff5a29)
+
   
 ### Systemvoraussetzungen
 
@@ -102,6 +105,22 @@ Im Airbyte UI wird dann Folgendes eingetragen und als Quelle hinzugefügt:
 
 Der Name des Datasets ist dabei der Name, den wir später für unsere Tabelle benutzen: `credit_card_transactions_raw`
 
+Angaben für vollständige Kreditkartentransaktionen-Datei: 
+```yml
+Dataset Name: credit_card_txns_raw
+File Format: CSV
+Storage Provider: Local Filesystem
+URL: /local/credit_card_transactions-ibm_v2.csv
+```
+
+Angaben für Test-Datei:
+```yml
+Dataset Name: test
+File Format: CSV
+Storage Provider: Local Filesystem
+URL: /local/test.csv
+```
+
 <br />
 
 #### 3. [Ziel hinzufügen](https://docs.airbyte.com/quickstart/add-a-destination)
@@ -168,7 +187,8 @@ Je nachdem welche Ports in der docker-compose.yml für PostgreSQL festgelegt wur
 
 Nach `docker-compose up` sind in Docker Desktop jetzt sowohl Airbyte als Multi-Container-Anwendung sowie unsere Datenpipeline mit PostgreSQL zu sehen. 
 
-![Screenshot from 2023-08-17 09-11-04](https://github.com/ClaraJozi/data_pipeline/assets/39526169/de81e6c3-d3c5-42e2-8623-561beb16412c)
+![Screenshot from 2023-08-19 17-45-55](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/328768a9-e647-43e3-8d38-e47e2630e8e7)
+
 
 ---
 
