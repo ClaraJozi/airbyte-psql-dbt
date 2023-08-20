@@ -6,7 +6,7 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 
 
 ### Gewünschter Output
-Eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen enthält: 
+Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthält: 
 - `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
 - `normalization`: normalisierte Daten
 - `stats_total`: KPIs nach Datum
