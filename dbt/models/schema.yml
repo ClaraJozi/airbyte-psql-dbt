@@ -18,6 +18,7 @@ sources:
               - not_null
           - name: _airbyte_emitted_at
             description: time at which the record was emitted and recorded by destination connector of Airbyte
+            tests:
               - not_null
 
 models:
