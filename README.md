@@ -5,7 +5,7 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 ![architecture-flowchart drawio (4)](https://github.com/ClaraJozi/data_pipeline/assets/39526169/6e4dedcd-07b5-4f27-903a-ae4bc850743e)
 
 ### Gewünschter Output
-Eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen beinhaltet: 
+Eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen enthält: 
 - `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
 - `normalization`: normalisierte Daten
 - `stats_total`: KPIs nach Datum
@@ -65,7 +65,7 @@ $ systemctl --user start docker-desktop
 
 <br />
 
-Docker Desktop scheint sich bei Linux auch öfter beim Start aufzuhängen. Wirklich wirkungsvoll war in dem Fall erst einmal nur die De- und Reinstallation von Docker Desktop. 
+Docker Desktop scheint sich bei Linux auch öfter beim Start aufzuhängen. Wirklich wirkungsvoll waren in dem Fall erst einmal nur die De- und Reinstallation von Docker Desktop. 
 
 <br />
 
@@ -80,16 +80,16 @@ $ ./run-ab-platform.sh
 ```
 <br />
 
- Während des Airbyte Deployments traten Schwierigkeiten zwischen Airbyte und Docker auf, da ein bestimmter Pfad nicht von Docker erkannt oder nicht für Docker freigegeben worden war. 
+Während des Airbyte Deployments traten Schwierigkeiten zwischen Airbyte und Docker auf, da ein bestimmter Pfad nicht von Docker erkannt oder nicht für Docker freigegeben worden war. 
  ```
 Error response from daemon: Mounts denied: 
 The path /tmp is not shared from the host and is not known to Docker.
 You can configure shared paths from Docker -> Preferences... -> Resources -> File Sharing.
 See https://docs.docker.com/ for more info.
 ```
-In Docker Desktop kann manuell unter Einstellungen der fehlende path `/tmp` hinzugefügt werden. Nach dem Hinzufügen auf `Apply & Restart` klicken und der Fehler ist behoben.
+In Docker Desktop kann manuell unter Einstellungen der fehlende path `/tmp` hinzugefügt werden. Nach dem Hinzufügen auf `Apply & Restart` klicken, und der Fehler ist behoben.
 
-Wenn `./run-ab-platform.sh` fehlerfrei läuft, kann das Airbyte UI unter http://localhost:8000 geöffnet werden und eine erste Verbindung kann aufgesetzt werden. Der Standard-Benutzername ist `airbyte` und das Standard-Passwort ist `password`. 
+Wenn `./run-ab-platform.sh` fehlerfrei läuft, kann das Airbyte UI unter http://localhost:8000 geöffnet werden, und eine erste Verbindung kann aufgesetzt werden. Der Standard-Benutzername ist `airbyte`, und das Standard-Passwort ist `password`. 
 
 <br />
 
@@ -122,7 +122,7 @@ URL: /local/test.csv
 
 #### 3. [Ziel hinzufügen](https://docs.airbyte.com/quickstart/add-a-destination)
 
-Nachdem die PostgreSQL-Datenbank wie unter PostgreSQL Setup beschrieben in der `docker-compose.yml` und durch `docker compose up` aufgesetzt wurde, können wir diese als Ziel in Airbyte hinzufügen. In diesem Schritt kann auch definiert werden, ob und welche Verschlüsselungsprotokolle (SSL oder SSH) zur Sicherung der Daten verwendet werden. Das Passwort ist hier das in der `docker-compose.yml` festgelegte Passwort für PostgreSQL: `mysecretpassword`. 
+Nachdem die PostgreSQL-Datenbank, wie unter PostgreSQL Setup beschrieben, in der `docker-compose.yml` und durch `docker compose up` aufgesetzt wurde, können wir sie als Ziel in Airbyte hinzufügen. In diesem Schritt kann auch definiert werden, ob und welche Verschlüsselungsprotokolle (SSL oder SSH) zur Sicherung der Daten verwendet werden. Das Passwort ist hier das in der `docker-compose.yml` festgelegte Passwort für PostgreSQL: `mysecretpassword`. 
 
 ![Screenshot from 2023-08-17 09-42-52](https://github.com/ClaraJozi/data_pipeline/assets/39526169/c7d7bb33-1042-4d5f-ad68-9c7c37873645)
 
@@ -130,14 +130,14 @@ Nachdem die PostgreSQL-Datenbank wie unter PostgreSQL Setup beschrieben in der `
 <br />
 
 #### 4. [Verbindung aufsetzen](https://docs.airbyte.com/quickstart/set-up-a-connection)
-Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum Beispiel die Verbindung synchronisiert werden soll und ob die Daten in einem JSON blob übertragen werden sollen oder bereits mithilfe von integriertem dbt normalisiert werden sollen. 
+Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum Beispiel die Verbindung synchronisiert werden soll und ob die Daten in einem JSON blob übertragen oder bereits mithilfe von integriertem dbt normalisiert werden sollen. 
 ![Screenshot from 2023-08-17 10-10-27](https://github.com/ClaraJozi/data_pipeline/assets/39526169/761728fd-bf51-4f6d-bf86-71462ed4cdfa)
 
 ![Screenshot from 2023-08-19 18-01-10](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/2938e0bf-bd06-4ef7-827f-367ddedecb1f)
 
 <br />
 
-Zusätzlich zu der Normalisierung der Daten, können in diesem Schritt unter [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eigenes github Repository`s direkt in die Verbindung mitaufgenommen werden. 
+Zusätzlich zu der Normalisierung der Daten können in diesem Schritt unter [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eines Github Repository direkt in die Verbindung mitaufgenommen werden. 
 
 ![Screenshot from 2023-08-19 17-28-55](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/a3d35857-8866-4efa-8edd-4ca438deab2e)
 
@@ -149,8 +149,8 @@ Da die integrierte Normalisierung in Airbyte den Daten nicht die gewünschten Da
 
 ### PostgreSQL SetUp
 PostgreSQL ist auf Ubuntu in der Regel schon vorinstalliert, so dass keine Neuinstallation vorgenommen werden muss. 
-PostgreSQL kann deshalb direkt über die Haupt-docker-compose Datei aufgesetzt werden. In der `docker-compose.yml` müssen dafür das offizielle [PostgreSQL-Image](https://hub.docker.com/_/postgres) von Docker sowie die jeweiligen Umgebungsvariablen definiert werden. Der Health Check stellt sicher, dass die PostgreSQL-Datenbank ordnungsgemäß gestartet und einsatzbereit ist, bevor andere Dienste oder Anwendungen, die von dieser Datenbank abhängen, gestartet werden. 
-Damit die aufgesetzte Datenbank beim Stoppen von Docker verloren gehen, wird diese auch lokal gespeichert. 
+PostgreSQL kann deshalb direkt über die Haupt-docker-compose Datei aufgesetzt werden. In der `docker-compose.yml` müssen dafür das offizielle [PostgreSQL-Image](https://hub.docker.com/_/postgres) von Docker sowie die jeweiligen Umgebungsvariablen definiert werden. Der Health Check stellt sicher, dass die PostgreSQL-Datenbank ordnungsgemäß gestartet wird und einsatzbereit ist, bevor andere Dienste oder Anwendungen, die von dieser Datenbank abhängen, gestartet werden. 
+Damit die aufgesetzte Datenbank beim Stoppen von Docker nicht verloren geht, wird diese auch lokal gespeichert. 
 
 ```yml
 version: "3.8"
@@ -180,7 +180,7 @@ volumes:
 
 <br />
 
-Je nachdem welche Ports in der docker-compose.yml für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf dem selben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
+Je nachdem, welche Ports in der `docker-compose.yml` für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf dem selben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
 
 Nach `docker-compose up` sind in Docker Desktop jetzt sowohl Airbyte als Multi-Container-Anwendung sowie unsere Datenpipeline mit PostgreSQL zu sehen. 
 
@@ -199,7 +199,7 @@ Am wichtigsten ist dabei die richtige Aufsetzung der `profiles.yml` und der `dbt
 
 1. [profiles.yml](https://docs.getdbt.com/docs/core/connect-data-platform/connection-profiles)
 
-Die `profiles.yml` ist eine Konfigurationsdatei, in der Informationen über die Verbindungen zu verschiedenen Datenbanken festgehalten werden. Im Wesentlichen werden hier ein Teil der Informationen, die in der `docker-compose.yml` für PostgreSQL festgelegt wurden, wiederholt. 
+Die `profiles.yml` ist eine Konfigurationsdatei, in der Informationen über die Verbindungen zu verschiedenen Datenbanken festgehalten werden. Im Wesentlichen wird hier ein Teil der Informationen, die in der `docker-compose.yml` für PostgreSQL festgelegt wurden, wiederholt. 
 
 ```yml
 pipeline:
@@ -222,7 +222,7 @@ pipeline:
    
 2. [dbt_project.yml](https://docs.getdbt.com/reference/dbt_project.yml)
 
-Die dbt_project.yml ist notwendig, damit das Verzeichnis als dbt Projekt erkannt wird und enthält Konfigurationsinformationen, die spezifisch für ein bestimmtes dbt-Projekt gelten. Wichtig ist hierbei, dass der name in der dbt_project.yml `pipeline` mit dem Namen in der `profile.yml` übereinstimmen muss. 
+Die dbt_project.yml ist notwendig, damit das Verzeichnis als dbt Projekt erkannt wird, und enthält Konfigurationsinformationen, die spezifisch für ein bestimmtes dbt-Projekt gelten. Wichtig ist hierbei, dass der `name` in der dbt_project.yml `pipeline` mit dem Namen in der `profile.yml` übereinstimmen muss. 
 
 ```yml
 name: 'data_pipeline'
@@ -255,7 +255,7 @@ models:
 
 3. schema.yml
 
-Die schema.yml-Datei dazu, Metadaten und Konfigurationen für die Modelle in deinem dbt-Projekt zu definieren. Diese Datei wird in jedem Verzeichnis verwendet, das ein dbt-Modell enthält, und enthält Informationen über die Quellen (Source) und Modelle in diesem Verzeichnis.
+Die `schema.yml` Datei dient dazu, Metadaten und Konfigurationen für die Modelle in deinem dbt-Projekt zu definieren. Diese Datei wird in jedem Verzeichnis verwendet, das ein dbt-Modell enthält, und gitbt Auskunft über die Quellen (Source) und Modelle in diesem Verzeichnis.
 
 Zum Beispiel: 
 
