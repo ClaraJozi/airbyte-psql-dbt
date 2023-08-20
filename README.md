@@ -145,7 +145,7 @@ Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum B
 
 Zusätzlich zu der Normalisierung der Daten können in diesem Schritt unter [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eines Github Repository direkt in die Verbindung mitaufgenommen werden. 
 
-![Screenshot from 2023-08-19 17-28-55](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/a3d35857-8866-4efa-8edd-4ca438deab2e)
+![airbyte_dbt_transformation](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/26a18634-01d1-4a21-bf8b-dd82e1a275ea)
 
 Da die integrierte Normalisierung in Airbyte den Daten nicht die gewünschten Datentypen zuweist, ist dem dbt-Setup ein individuell angepasstes SQL-Modell zur Normalisierung beigefügt. 
 
