@@ -20,7 +20,7 @@ WITH norm AS (
     FROM _airbyte_raw_credit_card_txns_raw 
 )
 SELECT 
-	CAST(id AS VARCHAR) AS id,
+    CAST(id AS VARCHAR) AS id,
     CAST(cc_owner AS VARCHAR) AS cc_owner,
     CAST(ccard AS VARCHAR) AS ccard,
     CAST(year AS INT) AS year,
