@@ -59,6 +59,8 @@ models:
   - name: stats_total
     description: aggregations by date
     sql: models/stats_total.sql
+    depends_on:
+      - normalization
     columns: 
       - name: full_date
         description: date of the transaction
@@ -90,6 +92,8 @@ models:
   - name: stats_geo
     description: aggregations by geographical data points - merchant state and merchant city - and by date, online txns are excluded
     sql: models/stats_geo.sql
+    depends_on:
+      - normalization
     columns:
       - name: full_date
         description: date of the transaction
@@ -121,6 +125,8 @@ models:
   - name: stats_txn_type
     description: aggregations by transaction type (e.g. "Online Transaction")
     sql: model/stats_txn_type.sql
+    depends_on:
+      - normalization
     columns:
       - name: full_date
         description: date of the transaction
