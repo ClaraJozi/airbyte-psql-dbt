@@ -36,6 +36,7 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 ### Repository SetUp
 - geklontes Airbyte Repository
 - dbt Ordner
+- README.md
 - docker-compose.yml Datei
 
 ---
