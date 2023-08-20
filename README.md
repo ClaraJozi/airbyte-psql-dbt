@@ -137,7 +137,7 @@ Activate SSL Connection
 
 #### 4. [Verbindung aufsetzen](https://docs.airbyte.com/quickstart/set-up-a-connection)
 Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum Beispiel die Verbindung synchronisiert werden soll und ob die Daten in einem JSON blob übertragen oder bereits mithilfe von integriertem dbt normalisiert werden sollen. 
-![Screenshot from 2023-08-17 10-10-27](https://github.com/ClaraJozi/data_pipeline/assets/39526169/761728fd-bf51-4f6d-bf86-71462ed4cdfa)
+![airbyte_configuration](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/ed34ffba-5242-4bad-8b30-3cff1f7ab7b5)
 
 ![Screenshot from 2023-08-19 18-01-10](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/2938e0bf-bd06-4ef7-827f-367ddedecb1f)
 
@@ -282,6 +282,7 @@ sources:
               - not_null
           - name: _airbyte_emitted_at
             description: time at which the record was emitted and recorded by destination connector of Airbyte
+            tests:
               - not_null
 
 models:
@@ -297,6 +298,12 @@ models:
         tests: 
           - not_null
       - name: ccard
+        tests: 
+          - not_null
+      - name: year
+      - name: month
+      - name: day
+      - name: full_date
         tests: 
           - not_null
 ```
@@ -327,7 +334,7 @@ group by 1,2,3,4
 order by 1 desc
 ```
 
-Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `custom transformations` hinzugefügt werden. Die Daten werden dann automatisch bei jeder Synchronisation von der CSV zu PostgreSQL über Airbyte im letzten Schritt transformiert.   
+Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `custom transformations` (siehe `Verbindung aufsetzen`) hinzugefügt werden. Die Daten werden dann automatisch bei jeder Synchronisation von der CSV zu PostgreSQL über Airbyte im letzten Schritt transformiert.   
 
 
  
