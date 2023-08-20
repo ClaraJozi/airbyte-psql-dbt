@@ -2,7 +2,8 @@
 
 Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserkennung und -prävention soll folgende batch-basierte Datenarchitektur implementiert werden:
 
-![architecture-flowchart drawio (4)](https://github.com/ClaraJozi/data_pipeline/assets/39526169/6e4dedcd-07b5-4f27-903a-ae4bc850743e)
+![final_datenarchitektur](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/f2579a66-bc7d-45c8-8d1c-9d2041d053a2)
+
 
 ### Gewünschter Output
 Eine `training_txn` Datenbank mit einem public Schema, das vier Tabellen enthält: 
@@ -100,22 +101,14 @@ In diesem Schritt wird die CSV Datei mit den Kreditkartentransaktionen über Air
 
 Im Airbyte UI wird dann Folgendes eingetragen und als Quelle hinzugefügt: 
 
-![Screenshot from 2023-08-11 17-56-50](https://github.com/ClaraJozi/data_pipeline_playground/assets/39526169/4238b402-99ee-44c2-9c04-09e3874680ab)
+![airbyte_source](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/9cbfcf2e-fe59-43bb-abe9-f7b4db1ba21a)
 
-Angaben für vollständige Kreditkartentransaktionen-Datei: 
+Angaben für Kreditkartentransaktionen-Datei: 
 ```yml
 Dataset Name: credit_card_txns_raw
 File Format: CSV
 Storage Provider: Local Filesystem
 URL: /local/credit_card_transactions-ibm_v2.csv
-```
-
-Angaben für Test-Datei:
-```yml
-Dataset Name: test
-File Format: CSV
-Storage Provider: Local Filesystem
-URL: /local/test.csv
 ```
 
 <br />
@@ -124,9 +117,21 @@ URL: /local/test.csv
 
 Nachdem die PostgreSQL-Datenbank, wie unter PostgreSQL Setup beschrieben, in der `docker-compose.yml` und durch `docker compose up` aufgesetzt wurde, können wir sie als Ziel in Airbyte hinzufügen. In diesem Schritt kann auch definiert werden, ob und welche Verschlüsselungsprotokolle (SSL oder SSH) zur Sicherung der Daten verwendet werden. Das Passwort ist hier das in der `docker-compose.yml` festgelegte Passwort für PostgreSQL: `mysecretpassword`. 
 
-![Screenshot from 2023-08-17 09-42-52](https://github.com/ClaraJozi/data_pipeline/assets/39526169/c7d7bb33-1042-4d5f-ad68-9c7c37873645)
+![airbyte_destination](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/1e0efdbc-4459-481a-931d-2fad7bd0b380)
 
-
+Angaben für Kreditkartentransaktionen-Datei: 
+```yml
+Destination name: Postgres
+Host: localhost
+Port: 5432
+DB Name: training_txn
+Default schema: public
+User: clara
+SSL modes: prefer
+SSH tunnel: No Tunnel
+Password: mysecretpassword
+Activate SSL Connection
+```
 <br />
 
 #### 4. [Verbindung aufsetzen](https://docs.airbyte.com/quickstart/set-up-a-connection)
@@ -172,10 +177,6 @@ services:
       interval: 60s
       timeout: 30s
       retries: 5
-
-volumes:
-  db:
-    driver: local
 ```
 
 <br />
