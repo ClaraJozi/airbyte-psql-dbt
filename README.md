@@ -36,8 +36,10 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 ### Repository SetUp
 - geklontes Airbyte Repository
 - dbt Ordner
+- .gitignore Datei
 - README.md
 - docker-compose.yml Datei
+- test.csv Datei
 
 ---
 
@@ -46,7 +48,7 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 - [Credentials Management](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) durch gpg key
 <br />
 
-> 🚧
+> 🚧👷‍♀️
 >
 > Bei Schwierigkeiten mit dem credential management wurde folgender Fehler angezeigt: 
 > ```
@@ -86,7 +88,7 @@ $ ./run-ab-platform.sh
 ```
 <br />
 
-> 🚧
+> 👷‍♀️
 >
 > Während des Airbyte Deployments traten Schwierigkeiten zwischen Airbyte und Docker auf, da ein bestimmter Pfad nicht von Docker erkannt oder nicht für Docker freigegeben worden war. 
 >  ```
@@ -193,7 +195,7 @@ services:
 
 > 🚧
 >
-> Je nachdem, welche Ports in der `docker-compose.yml` für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf dem selben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
+> Je nachdem, welche Ports in der `docker-compose.yml` für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf demselben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
 
 <br />
 
@@ -356,7 +358,7 @@ Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `cus
 
 ---
 
-### Testing mit test.csv
+### Test der Pipeline mit test.csv
 
 Zum Testen der Pipeline wurde ein kleines Sample der Originaldatei benutzt. 
 Damit die Pipeline mit der test.csv laufan kann, müssen ein paar kleine Änderungen vorgenommen werden: 
