@@ -1,8 +1,7 @@
 ## Batch-Pipeline für eine Machine Learning Anwendung
 
 Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserkennung und -prävention soll folgende batch-basierte Datenarchitektur implementiert werden:
-
-![final_datenarchitektur](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/f2579a66-bc7d-45c8-8d1c-9d2041d053a2)
+![finale_architektur (2)](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/72aa73de-2e3e-410f-bd3c-0d5f28eee1fe)
 
 
 ### Gewünschter Output
@@ -222,7 +221,7 @@ services:
 
 Nach `docker-compose up` sind in Docker Desktop jetzt sowohl Airbyte als Multi-Container-Anwendung sowie unsere Datenpipeline mit PostgreSQL zu sehen. 
 
-![Screenshot from 2023-08-19 17-45-55](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/328768a9-e647-43e3-8d38-e47e2630e8e7)
+![airbyte_postgres_containers](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/cdaebd45-d93b-4a69-8a90-e2bdd50afc35)
 
 
 ---
