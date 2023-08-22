@@ -15,7 +15,7 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 
 ![Screenshot from 2023-08-19 20-15-20](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/6ea1cc3c-450a-48bc-ae36-d4b401ff5a29)
 
-  
+
 ### Systemvoraussetzungen
 
 - Python 3.9.17
@@ -42,7 +42,12 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 - test.csv Datei
 
 ---
+### Datensatz
+Der Datensatz ist aufgrund seiner Größe (2.35GB) nicht in dem Repository enthalten. Über Kaggle kann [hier](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions) aber die csv-Datei `credit_card_transactions-ibm_v2` heruntergeladen werden. Am besten wird die Datei dann direkt in das geklonte Repository abgelegt, so dass sie unter `./airbyte-psql-dbt/credit_card_transactions-ibm_v2.csv` zu finden ist. 
 
+<br />
+
+---
 ### Docker Desktop SetUp in Ubuntu
 - [Installation von Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) 
 - [Credentials Management](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) durch gpg key
@@ -88,7 +93,7 @@ $ ./run-ab-platform.sh
 ```
 <br />
 
-> 👷‍♀️
+> 🚧👷‍♀️
 >
 > Während des Airbyte Deployments traten Schwierigkeiten zwischen Airbyte und Docker auf, da ein bestimmter Pfad nicht von Docker erkannt oder nicht für Docker freigegeben worden war. 
 >  ```
@@ -108,7 +113,7 @@ Wenn `./run-ab-platform.sh` fehlerfrei läuft, kann das Airbyte UI unter http://
 #### 2. [Quelle hinzufügen](https://docs.airbyte.com/quickstart/add-a-source)
 
 In diesem Schritt wird die CSV Datei mit den Kreditkartentransaktionen über Airbyte als Quelle synchronisiert. Die CSV ist lokal gespeichert. Damit Airbyte diese CSV als Quelle synchronisieren kann, muss die Datei in `/tmp/airbyte_local/` verschoben beziehungsweise kopiert werden: 
-`cp <lokaler Ordner> /tmp/airbyte_local/`
+`cp <./airbyte-psql-dbt/credit_card_transactions-ibm_v2.csv> /tmp/airbyte_local/`
 
 Im Airbyte UI wird dann Folgendes eingetragen und als Quelle hinzugefügt: 
 
@@ -193,7 +198,7 @@ services:
 
 <br />
 
-> 🚧
+> 🚧👷‍♀️
 >
 > Je nachdem, welche Ports in der `docker-compose.yml` für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf demselben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
 
@@ -363,7 +368,7 @@ Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `cus
 Zum Testen der Pipeline wurde ein kleines Sample der Originaldatei benutzt. 
 Damit die Pipeline mit der test.csv laufan kann, müssen ein paar kleine Änderungen vorgenommen werden: 
 1. Verschieben der Datei in `/tmp/airbyte_local/`
-Die test.csv kann mithilfe von `cp ./test.csv /tmp/airbyte_local` kopiert werden.
+Die test.csv kann mithilfe von `cp ./airbyte-psql-dbt/test.csv /tmp/airbyte_local` kopiert werden.
 <br />
 
 2. Änderung der Quelle im Airbyte UI
