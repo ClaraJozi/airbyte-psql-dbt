@@ -194,6 +194,7 @@ version: "3.8"
 
 services:
   db:
+    container_name: postgres
     image: postgres:latest
     restart: always
     environment:
@@ -205,7 +206,7 @@ services:
     volumes:
       - ./postgres:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U clara"]
+      test: ["CMD-SHELL"]
       interval: 60s
       timeout: 30s
       retries: 5
