@@ -1,0 +1,3 @@
+./logs
+./dbt/logs
+./dbt/target
