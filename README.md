@@ -22,6 +22,7 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 - Ubuntu 20.04.6, 64-bit
 - Github Account
 - Docker Hub Account
+- VS Code
 
 ### Tech Stack
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) mit Docker Engine und Docker Compose
@@ -44,8 +45,6 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 ---
 ### Datensatz
 Der Datensatz ist aufgrund seiner Größe (2.35GB) nicht in dem Repository enthalten. Über Kaggle kann [hier](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions) aber die csv-Datei `credit_card_transactions-ibm_v2` heruntergeladen werden. Am besten wird die Datei dann direkt in das geklonte Repository abgelegt, so dass sie unter `./airbyte-psql-dbt/credit_card_transactions-ibm_v2.csv` zu finden ist. 
-
-<br />
 
 ---
 ### Docker Desktop SetUp in Ubuntu
@@ -163,7 +162,18 @@ Zusätzlich zu der Normalisierung der Daten können in diesem Schritt unter `cus
 
 
 Da die integrierte Normalisierung in Airbyte den Daten nicht die gewünschten Datentypen zuweist, ist dem dbt-Setup ein individuell angepasstes SQL-Modell zur Normalisierung beigefügt. 
+
 ![dbt_transformation](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/bcfab96c-456d-463d-8959-8e21537a43cf)
+
+<br />
+
+```yml
+Transformation name: dbt_transformation
+Transformation type: Custom DBT
+Docker image URL with dbt installed: ghcr.io/dbt-labs/dbt-postgres:1.6.0
+Entrypoint arguments for dbt cli to run the project: run --project-dir dbt
+Git repository URL of the custom transformation project: https://github.com/ClaraJozi/airbyte-psql-dbt.git
+```
 
 <br />
 
