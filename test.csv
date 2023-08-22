@@ -1,0 +1,53 @@
+User,Card,Year,Month,Day,Time,Amount,Use Chip,Merchant Name,Merchant City,Merchant State,Zip,MCC,Errors?,Is Fraud?
+0,0,2015,11,15,12:55,$287.13,Online Transaction,"-8,19E+32",ONLINE,,,3001,,Yes
+0,0,2015,11,15,13:19,$2.41,Online Transaction,"-7,76E+32",ONLINE,,,5651,,Yes
+0,0,2015,11,16,09:41,$50.81,Online Transaction,"-5,51E+31",ONLINE,,,4411,,Yes
+0,0,2015,11,16,09:46,$248.36,Online Transaction,"4,87E+32",ONLINE,,,5732,,Yes
+0,0,2015,11,16,11:20,$473.00,Online Transaction,"-8,57E+32",ONLINE,,,3640,,Yes
+0,0,2015,11,16,11:34,$144.49,Online Transaction,"-3,65E+32",ONLINE,,,3007,,Yes
+0,0,2015,11,16,13:44,$44.57,Online Transaction,"1,91E+32",ONLINE,,,5300,,Yes
+0,0,2015,11,17,14:12,$64.93,Online Transaction,"4,65E+31",ONLINE,,,7996,,Yes
+0,0,2015,11,17,15:35,$124.59,Online Transaction,"9,06E+32",ONLINE,,,5311,,Yes
+0,0,2015,11,17,15:59,$97.34,Online Transaction,"5,63E+32",ONLINE,,,7922,,Yes
+0,0,2015,11,17,16:05,$17.86,Online Transaction,"-3,22E+32",ONLINE,,,5311,,Yes
+0,0,2015,11,20,07:34,$162.11,Online Transaction,"-8,57E+32",ONLINE,,,3640,,Yes
+0,0,2015,11,20,07:42,$-473.00,Online Transaction,"-8,57E+32",ONLINE,,,3640,,Yes
+0,2,2016,3,6,11:18,$81.93,Chip Transaction,"-6,68E+32",Claremont,CA,91711,4121,,Yes
+0,2,2016,3,6,12:10,$297.86,Online Transaction,"-3,22E+32",ONLINE,,,5311,,Yes
+0,3,2008,10,10,09:37,$11.04,Swipe Transaction,"1,91E+32",Pasadena,CA,91106,5300,,Yes
+0,3,2008,10,12,11:52,$68.86,Swipe Transaction,"-2,45E+31",Upland,CA,91786,5311,,Yes
+0,3,2008,10,12,15:54,$96.19,Swipe Transaction,"3,19E+32",La Verne,CA,91750,5311,,Yes
+0,3,2008,10,12,15:58,$298.00,Swipe Transaction,"1,72E+32",Corona,CA,92881,3722,,Yes
+0,3,2008,10,13,07:02,$3.72,Swipe Transaction,"1,97E+30",Upland,CA,91784,5300,,Yes
+0,3,2008,10,13,07:08,$75.41,Swipe Transaction,"-9,01E+31",Claremont,CA,91711,5310,,Yes
+0,3,2008,10,13,08:10,$245.41,Swipe Transaction,"-1,40E+32",Chula Vista,CA,91913,5816,,Yes
+0,3,2008,10,13,08:13,$196.10,Swipe Transaction,"9,70E+30",Upland,CA,91784,5411,,Yes
+0,3,2008,10,20,09:03,$29.53,Swipe Transaction,"1,72E+32",Corona,CA,92881,3722,,Yes
+0,3,2008,10,20,09:23,$-298.00,Swipe Transaction,"1,72E+32",Corona,CA,92881,3722,,Yes
+0,3,2016,2,23,10:26,$244.23,Online Transaction,"5,76E+32",ONLINE,,,5310,,Yes
+0,3,2016,2,23,14:38,$22.40,Swipe Transaction,"-9,91E+30",Claremont,CA,91711,5300,,Yes
+1,1,2016,6,9,10:08,$181.74,Online Transaction,"-6,76E+32",ONLINE,,,5310,,Yes
+1,1,2016,6,9,14:44,$3.28,Chip Transaction,"5,61E+32",Little Neck,NY,11362,5211,,Yes
+1,1,2016,6,9,18:52,$143.95,Online Transaction,"4,80E+32",ONLINE,,,5732,,Yes
+1,1,2019,5,11,14:05,$488.00,Chip Transaction,"-7,81E+32",Rome,Italy,,3684,,Yes
+1,1,2019,5,11,14:53,$14.22,Chip Transaction,"9,06E+32",Rome,Italy,,5311,,Yes
+1,1,2019,5,16,14:26,$13.79,Chip Transaction,"6,10E+32",Rome,Italy,,4214,,Yes
+1,1,2019,5,16,15:12,$12.27,Chip Transaction,"7,07E+32",Rome,Italy,,5812,,Yes
+78,0,2009,10,1,06:25,$19.24,Swipe Transaction,"5,82E+32",Lindsay,OK,73052,5912,,No
+78,0,2009,10,2,03:35,$9.85,Swipe Transaction,"4,72E+32",Edmond,OK,73034,5411,,No
+78,0,2009,10,2,15:28,$478.89,Swipe Transaction,"3,42E+32",Edmond,OK,73034,6300,,No
+78,0,2009,10,3,06:09,$21.96,Swipe Transaction,"1,94E+32",Edmond,OK,73034,5912,,No
+78,0,2009,10,3,07:55,$15.92,Swipe Transaction,"5,82E+32",Lindsay,OK,73052,5912,,No
+78,0,2009,10,3,09:37,$4.33,Swipe Transaction,"-9,11E+32",Edmond,OK,73034,5411,,No
+78,0,2009,10,3,20:11,$15.59,Online Transaction,"6,46E+32",ONLINE,,,5815,,No
+78,0,2009,10,4,03:36,$8.79,Swipe Transaction,"-4,50E+32",Edmond,OK,73034,5814,,No
+78,0,2009,10,4,09:44,$1.36,Swipe Transaction,"-4,08E+32",Edmond,OK,73034,5812,,No
+78,0,2009,10,4,17:42,$92.02,Swipe Transaction,"-4,69E+32",Edmond,OK,73034,7538,,No
+78,0,2009,10,5,03:22,$9.09,Swipe Transaction,"4,72E+32",Edmond,OK,73034,5411,,No
+78,0,2009,10,5,12:23,$15.42,Swipe Transaction,"-9,11E+32",Edmond,OK,73034,5411,,No
+78,0,2009,10,6,10:26,$4.15,Swipe Transaction,"-9,11E+32",Edmond,OK,73034,5411,,No
+78,0,2009,10,7,17:52,$76.31,Swipe Transaction,"-4,69E+32",Edmond,OK,73034,7538,,No
+78,0,2009,10,8,04:17,$11.79,Swipe Transaction,"7,07E+32",Edmond,OK,73034,5812,,No
+78,0,2009,10,9,09:43,$4.48,Swipe Transaction,"2,03E+32",Edmond,OK,73034,5541,,No
+78,0,2009,10,10,03:39,$9.14,Swipe Transaction,"4,72E+32",Edmond,OK,73034,5411,,No
+78,0,2009,10,10,10:10,$141.66,Swipe Transaction,"-8,92E+32",Edmond,OK,73034,8041,,No

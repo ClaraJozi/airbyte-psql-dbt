@@ -336,6 +336,22 @@ order by 1 desc
 
 Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `custom transformations` (siehe `Verbindung aufsetzen`) hinzugefügt werden. Die Daten werden dann automatisch bei jeder Synchronisation von der CSV zu PostgreSQL über Airbyte im letzten Schritt transformiert.   
 
+<br />
+
+### Testing mit test.csv
+Zum Testen der Pipeline wurde ein kleines Sample der Originaldatei benutzt. 
+Damit die Pipeline mit der test.csv laufan kann, müssen ein paar kleine Änderungen vorgenommen werden: 
+1. Verschieben der Datei in `/tmp/airbyte_local/`
+Die test.csv kann mithilfe von `cp ./test.csv /tmp/airbyte_local` kopiert werden. 
+2. Änderung der Quelle im Airbyte UI 
+```yml
+Dataset Name: test
+File Format: CSV
+Storage Provider: Local Filesystem
+URL: /local/test.csv
+```
+3. Anpassung des dbt-Modells in `./dbt/models/normalization.sql`
+Damit die dbt-Transformationen für die test.csv laufen können, muss die Quelltabelle (source table) im dbt Normalisierung-Modell geändert werden. Dafür muss `FROM _airbyte_raw_credit_card_txns_raw` durch `FROM _airbyte_raw_test` ersetzt werden. 
 
  
 
