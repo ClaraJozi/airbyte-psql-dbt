@@ -1,8 +1,8 @@
 ## Batch-Pipeline für eine Machine Learning Anwendung
 
 Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserkennung und -prävention soll folgende batch-basierte Datenarchitektur implementiert werden:
-![finale_architektur (2)](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/72aa73de-2e3e-410f-bd3c-0d5f28eee1fe)
 
+![final_final](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/63274f1b-37f9-4e90-85c5-2f5b66550693)
 
 ### Gewünschter Output
 Eine erfolgreiche Synchronisation und Transformation via Airbyte und dbt: 
