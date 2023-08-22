@@ -6,6 +6,9 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 
 
 ### Gewünschter Output
+Eine erfolgreiche Synchronisation und Transformation via Airbyte und dbt: 
+![airbyte_final_sync](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/614f2f06-94bd-4a0e-925b-a7c0ffd0ade3)
+
 Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthält: 
 - `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
 - `normalization`: normalisierte Daten
@@ -13,7 +16,7 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 - `stats_geo`: KPIs nach Datum und Merchant State & City
 - `stats_txn_type`: KPIs nach Datum und Transaktionstyp
 
-![Screenshot from 2023-08-19 20-15-20](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/6ea1cc3c-450a-48bc-ae36-d4b401ff5a29)
+![dbeaver_output_final](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/f64fde97-7804-4322-9103-bf0149a7557c)
 
 
 ### Systemvoraussetzungen
@@ -45,6 +48,8 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 ---
 ### Datensatz
 Der Datensatz ist aufgrund seiner Größe (2.35GB) nicht in dem Repository enthalten. Über Kaggle kann [hier](https://www.kaggle.com/datasets/ealtman2019/credit-card-transactions) aber die csv-Datei `credit_card_transactions-ibm_v2` heruntergeladen werden. Am besten wird die Datei dann direkt in das geklonte Repository abgelegt, so dass sie unter `./airbyte-psql-dbt/credit_card_transactions-ibm_v2.csv` zu finden ist. 
+
+Da die Pipeline für die Verarbeitung des Originaldatensatzes ca 2½ Stunden braucht, ist dem Repository eine kleinere Testdatei beigefügt.
 
 ---
 ### Docker Desktop SetUp in Ubuntu
