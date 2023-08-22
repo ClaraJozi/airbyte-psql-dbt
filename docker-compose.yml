@@ -18,12 +18,3 @@ services:
       interval: 60s
       timeout: 30s
       retries: 5
-
-  dbt:
-    image: ghcr.io/dbt-labs/dbt-postgres:1.6.0
-    environment:
-      DBT_PROFILES_DIR: /dbt/profile
-    volumes:
-      - ./dbt:/dbt
-    depends_on:
-      - db
