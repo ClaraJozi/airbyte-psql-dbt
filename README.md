@@ -41,33 +41,37 @@ Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthä
 
 ---
 
-### Docker Desktop SetUp
+### Docker Desktop SetUp in Ubuntu
 - [Installation von Docker Desktop](https://docs.docker.com/desktop/install/linux-install/) 
 - [Credentials Management](https://docs.docker.com/desktop/get-started/#credentials-management-for-linux-users) durch gpg key
 <br />
 
-Bei Schwierigkeiten mit dem credential management wurde folgender Fehler angezeigt: 
-```
-error getting credentials - err: exit status 1, out: `error getting credentials - err: exit status 1, out: `exit status 2: gpg: decryption failed: no secret key
-```
-
-Der Fehler konnte mithilfe folgender Schritte behoben werden: 
-- Löschung der gespeicherten Docker Credentials
-- neue Generierung eines GPG keys
-- Speicherung des neuen GPG keys initiiert
-- Neustart von Docker Desktop
-
-```
-$ rm -rf ~/.password-store/docker-credential-helpers 
-$ gpg --generate-key
-$ pass init <generated gpg-id public key>
-$ systemctl --user start docker-desktop 
-```
-*Quelle*: *[stack overflow](https://stackoverflow.com/questions/71770693/error-saving-credentials-error-storing-credentials-err-exit-status-1-out)*
+> 🚧
+>
+> Bei Schwierigkeiten mit dem credential management wurde folgender Fehler angezeigt: 
+> ```
+> error getting credentials - err: exit status 1, out: `error getting credentials - err: exit status 1, out: `exit status 2: gpg: decryption failed: no secret > key
+> ```
+> 
+> Der Fehler konnte mithilfe folgender Schritte behoben werden: 
+> - Löschung der gespeicherten Docker Credentials
+> - neue Generierung eines GPG keys
+> - Speicherung des neuen GPG keys initiiert
+> - Neustart von Docker Desktop
+> 
+> ```
+> $ rm -rf ~/.password-store/docker-credential-helpers 
+> $ gpg --generate-key
+> $ pass init <generated gpg-id public key>
+> $ systemctl --user start docker-desktop 
+> ```
+> *Quelle*: *[stack overflow](https://stackoverflow.com/questions/71770693/error-saving-credentials-error-storing-credentials-err-exit-status-1-out)*
 
 <br />
 
-Docker Desktop scheint sich bei Linux auch öfter beim Start aufzuhängen. Wirklich wirkungsvoll waren in dem Fall erst einmal nur die De- und Reinstallation von Docker Desktop. 
+> ℹ️
+> 
+> Docker Desktop scheint sich bei Linux auch öfter beim Start aufzuhängen. Wirklich wirkungsvoll waren in dem Fall erst einmal nur die De- und Reinstallation von Docker Desktop. 
 
 <br />
 
@@ -82,14 +86,18 @@ $ ./run-ab-platform.sh
 ```
 <br />
 
-Während des Airbyte Deployments traten Schwierigkeiten zwischen Airbyte und Docker auf, da ein bestimmter Pfad nicht von Docker erkannt oder nicht für Docker freigegeben worden war. 
- ```
-Error response from daemon: Mounts denied: 
-The path /tmp is not shared from the host and is not known to Docker.
-You can configure shared paths from Docker -> Preferences... -> Resources -> File Sharing.
-See https://docs.docker.com/ for more info.
-```
-In Docker Desktop kann manuell unter Einstellungen der fehlende path `/tmp` hinzugefügt werden. Nach dem Hinzufügen auf `Apply & Restart` klicken, und der Fehler ist behoben.
+> 🚧
+>
+> Während des Airbyte Deployments traten Schwierigkeiten zwischen Airbyte und Docker auf, da ein bestimmter Pfad nicht von Docker erkannt oder nicht für Docker freigegeben worden war. 
+>  ```
+> Error response from daemon: Mounts denied: 
+> The path /tmp is not shared from the host and is not known to Docker.
+> You can configure shared paths from Docker -> Preferences... -> Resources -> File Sharing.
+> See https://docs.docker.com/ for more info.
+> ```
+> In Docker Desktop kann manuell unter Einstellungen der fehlende path `/tmp` hinzugefügt werden. Nach dem Hinzufügen auf `Apply & Restart` klicken, und der Fehler ist behoben.
+
+<br />
 
 Wenn `./run-ab-platform.sh` fehlerfrei läuft, kann das Airbyte UI unter http://localhost:8000 geöffnet werden, und eine erste Verbindung kann aufgesetzt werden. Der Standard-Benutzername ist `airbyte`, und das Standard-Passwort ist `password`. 
 
@@ -145,9 +153,10 @@ Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum B
 
 Zusätzlich zu der Normalisierung der Daten können in diesem Schritt unter [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eines Github Repository direkt in die Verbindung mitaufgenommen werden. 
 
-![airbyte_dbt_transformation](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/26a18634-01d1-4a21-bf8b-dd82e1a275ea)
+
 
 Da die integrierte Normalisierung in Airbyte den Daten nicht die gewünschten Datentypen zuweist, ist dem dbt-Setup ein individuell angepasstes SQL-Modell zur Normalisierung beigefügt. 
+![dbt_transformation](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/bcfab96c-456d-463d-8959-8e21537a43cf)
 
 <br />
 
@@ -182,7 +191,11 @@ services:
 
 <br />
 
-Je nachdem, welche Ports in der `docker-compose.yml` für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf dem selben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
+> 🚧
+>
+> Je nachdem, welche Ports in der `docker-compose.yml` für PostgreSQL festgelegt wurden, kann es zu Konflikten mit dem lokalen PostgreSQL SetUp kommen. Um zu vermeiden, dass beide PostgreSQL Instanzen auf dem selben Port laufen, kann man über `sudo service postgresql stop`  den lokal laufenden PostgreSQL-Datenbankdienst stoppen. 
+
+<br />
 
 Nach `docker-compose up` sind in Docker Desktop jetzt sowohl Airbyte als Multi-Container-Anwendung sowie unsere Datenpipeline mit PostgreSQL zu sehen. 
 
@@ -191,13 +204,10 @@ Nach `docker-compose up` sind in Docker Desktop jetzt sowohl Airbyte als Multi-C
 
 ---
 
-### dbt SetUp
-Um dbt lokal aufzusetzen: 
-- Installation von [dbt-postgres](https://docs.getdbt.com/docs/core/pip-install)
-- `dbt init`, um ein neues dbt-Projekt zu initialisieren
-- für unser Projekt werden nur die `.user.yml`, die `profiles.yml`, die `dbt_project.yml` sowie der Ordner `models` mit der `schema.yml` und den SQL Queries für die Modelle benötigt
+### [dbt SetUp](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-dbt/)
+dbt ist bereits in Airbyte integriert. Das heißt, dass Airbyte automatisch nach dem Laden der Daten in PostgreSQL dbt-Transformationen vornehmen kann, indem es selbst eine dbt Docker-Instanz und ein dbt-Projekt generiert. dbt muss deswegen nicht in die `docker-compose.yml`, in der PostgreSQL aufgesetzt wird, integriert werden. 
 
-Am wichtigsten ist dabei die richtige Aufsetzung der `profiles.yml` und der `dbt_project.yml`
+Airbyte benötigt für individuell angepasste Transformationen nur ein Github-Repository, in dem Dateien wie die `profiles.yml`, `dbt_project.yml` und der Ordner `models` mit der `schema.yml` und den SQL-Modellen enthalten sind. 
 
 1. [profiles.yml](https://docs.getdbt.com/docs/core/connect-data-platform/connection-profiles)
 
@@ -311,9 +321,15 @@ models:
 
 4. [SQL Modelle](https://docs.getdbt.com/docs/build/sql-models)
    
-Die SQL-Modelle in dbt definieren die Transformationslogik für die Daten und können über die bereits definierte Quelldatenbank Daten laden und transformieren. Das SQL Modell selbst ist dabei eine einfache SQL-Query.
+Die SQL-Modelle in dbt definieren die Transformationslogik für die Daten und können über die bereits definierte Quelldatenbank und -tabelle Daten laden und transformieren. Das SQL-Modell selbst ist dabei eine einfache SQL-Query. 
+Für dieses Projekt wurden insgesamt vier Modelle generiert, die am Ende als Tabellen zusätzlich zu den Rohdaten in PostgreSQL zu sehen sind: 
+- normalisation: individuell angepasste Normalisierung der Rohdaten
+- stats_total: Aggregationen nach Datum der Transaktion sortiert
+- stats_geo: Aggregationen nach Datum der Transaktion und geographischen Datenpunkten sortiert
+- stats_txn_type: Aggregationen nach Datum der Transaktion und Transaktionstyp sortiert 
 
-Das `stats_total` SQL Modell: 
+
+Das `stats_total` SQL-Modell sieht zum Beispiel so aus: 
 ```SQL
 select 
 	full_date, 
@@ -334,24 +350,41 @@ group by 1,2,3,4
 order by 1 desc
 ```
 
-Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `custom transformations` (siehe `Verbindung aufsetzen`) hinzugefügt werden. Die Daten werden dann automatisch bei jeder Synchronisation von der CSV zu PostgreSQL über Airbyte im letzten Schritt transformiert.   
+Nachdem das dbt-Projekt so aufgesetzt wurde, kann es in Airbyte jetzt unter `custom transformations` (siehe `Verbindung aufsetzen`) hinzugefügt werden. Die Daten werden dann automatisch bei jeder Synchronisation von CSV zu PostgreSQL über Airbyte im letzten Schritt transformiert.   
 
 <br />
 
+---
+
 ### Testing mit test.csv
+
 Zum Testen der Pipeline wurde ein kleines Sample der Originaldatei benutzt. 
 Damit die Pipeline mit der test.csv laufan kann, müssen ein paar kleine Änderungen vorgenommen werden: 
 1. Verschieben der Datei in `/tmp/airbyte_local/`
-Die test.csv kann mithilfe von `cp ./test.csv /tmp/airbyte_local` kopiert werden. 
-2. Änderung der Quelle im Airbyte UI 
+Die test.csv kann mithilfe von `cp ./test.csv /tmp/airbyte_local` kopiert werden.
+<br />
+
+2. Änderung der Quelle im Airbyte UI
+![airbyte_test_source](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/b9e2b8b8-02a4-4ca5-b526-d647176d73e4)
 ```yml
 Dataset Name: test
 File Format: CSV
 Storage Provider: Local Filesystem
 URL: /local/test.csv
 ```
+<br />
+
 3. Anpassung des dbt-Modells in `./dbt/models/normalization.sql`
+
 Damit die dbt-Transformationen für die test.csv laufen können, muss die Quelltabelle (source table) im dbt Normalisierung-Modell geändert werden. Dafür muss `FROM _airbyte_raw_credit_card_txns_raw` durch `FROM _airbyte_raw_test` ersetzt werden. 
+
+Erkennen lässt sich das erfolgreiche Laufen der Test-Pipeline wie folgt: 
+![airbyte_on_time_result](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/e9ce7cf5-f7a3-4972-a004-7418382e49ee)
+
+Gewünschter Output für den Test: 
+
+![test_output](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/12fc69c7-fa5d-46b3-850b-efa4b2c86764)
+
 
  
 
