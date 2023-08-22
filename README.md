@@ -158,7 +158,7 @@ Abschließend kann unter `Configure connection` festgelegt werden, wie oft zum B
 
 <br />
 
-Zusätzlich zu der Normalisierung der Daten können in diesem Schritt unter [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eines Github Repository direkt in die Verbindung mitaufgenommen werden. 
+Zusätzlich zu der Normalisierung der Daten können in diesem Schritt unter `custom transformations` und [add transformation](https://docs.airbyte.com/operator-guides/transformation-and-normalization/transformations-with-airbyte/) die eigenen dbt Modelle, die im Rahmen des dbt SetUps kreiert wurden, als Teil eines Github Repository direkt in die Verbindung mitaufgenommen werden. 
 
 
 
