@@ -17,7 +17,7 @@ WITH norm AS (
         (_airbyte_data ->> 'Errors?') AS errors,
         (_airbyte_data ->> 'Is Fraud?') AS is_fraud,
         _airbyte_emitted_at
-    FROM _airbyte_raw_credit_card_txns_raw 
+    FROM _airbyte_raw_test
 )
 SELECT 
     CAST(id AS VARCHAR) AS id,
