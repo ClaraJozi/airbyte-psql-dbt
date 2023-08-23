@@ -8,14 +8,26 @@ Als Backend für eine datenintensive Machine Learning Applikation zur Betrugserk
 Eine erfolgreiche Synchronisation und Transformation via Airbyte und dbt: 
 ![airbyte_final_sync](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/614f2f06-94bd-4a0e-925b-a7c0ffd0ade3)
 
-Eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthält: 
+In PostgreSQL eine `training_txn` Datenbank mit einem public Schema, das fünf Tabellen enthält: 
 - `_airbyte_raw_credit_card_txns_raw:` Rohdaten aus der CSV
 - `normalization`: normalisierte Daten
 - `stats_total`: KPIs nach Datum
 - `stats_geo`: KPIs nach Datum und Merchant State & City
 - `stats_txn_type`: KPIs nach Datum und Transaktionstyp
 
-![dbeaver_output_final](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/f64fde97-7804-4322-9103-bf0149a7557c)
+```
+training_txn (Database)
+|
+└── public (Schema)
+    |
+    ├── _airbyte_raw_credit_card_txns_raw (Tabelle)
+    |
+    ├── stats_geo (Tabelle)
+    |
+    ├── stats_total (Tabelle)
+    |
+    └── stats_txn_type (Tabelle)
+```
 
 
 ### Systemvoraussetzungen
@@ -405,7 +417,21 @@ Erkennen lässt sich das erfolgreiche Laufen der Test-Pipeline wie folgt:
 
 Gewünschter Output für den Test: 
 
-![test_output](https://github.com/ClaraJozi/airbyte-psql-dbt/assets/39526169/12fc69c7-fa5d-46b3-850b-efa4b2c86764)
+```
+PostgreSQL
+
+training_txn (Database)
+|
+└── public (Schema)
+    |
+    ├── _airbyte_raw_test (Tabelle)
+    |
+    ├── stats_geo (Tabelle)
+    |
+    ├── stats_total (Tabelle)
+    |
+    └── stats_txn_type (Tabelle)
+```
 
 
  
