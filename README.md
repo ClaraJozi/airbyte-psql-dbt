@@ -418,8 +418,6 @@ Erkennen lässt sich das erfolgreiche Laufen der Test-Pipeline wie folgt:
 Gewünschter Output für den Test: 
 
 ```
-PostgreSQL
-
 training_txn (Database)
 |
 └── public (Schema)
